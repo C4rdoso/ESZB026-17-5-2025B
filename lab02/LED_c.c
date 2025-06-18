@@ -21,25 +21,33 @@ void writeGPIO(char filename[], char value[]){
 }
 
 void toggleGPIO(char LED_number[], char LED_path[], int time){
+	char fullpath[128];
+
 	//Habilitando porta
 	writeGPIO(GPIO_SYSFS "export", LED_number);
 	usleep(100000);
-	writeGPIO(LED_path "direction", "out");
 
-	writeGPIO(LED_path "value", "1");
+	snprintf(fullpath, sizeof(fullpath), "%sdirection", LED_path);
+	writeGPIO(fullpath, "out");
+
+	snprintf(fullpath, sizeof(fullpath), "%svalue", LED_path);
+	writeGPIO(fullpath, "1");
+
 	sleep(time);
-	writeGPIO(LED_path "value", "0");
+
+	snprintf(fullpath, sizeof(fullpath), "%svalue", LED_path);
+	writeGPIO(fullpath, "0");
 
 	writeGPIO(GPIO_SYSFS "unexport", LED_number);
 }
 
 int main(){
-
-for(int i=0; i<5; i++){
-	toogleGPIO("20", GPIO_RED, 2);
-	toogleGPIO("21", GPIO_GREEN,1);
-	toogleGPIO("16", GPIO_YELLOW, 1);
-}
+	for(int i=0; i<5; i++){
+		toggleGPIO("20", GPIO_RED, 2);
+		toggleGPIO("21", GPIO_GREEN,1);
+		toggleGPIO("16", GPIO_YELLOW, 1);
+	}
+	printf("Fim do programa em C\n");
 }
 
 
