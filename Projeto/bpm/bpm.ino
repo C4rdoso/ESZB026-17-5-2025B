@@ -39,7 +39,7 @@ void setup()
 
     // Configura o sensor
     particleSensor.setup();
-    // Liga o LED vermelho para inidicar que o sensor está ligado
+    // Liga o LED vermelho para indicar que o sensor está ligado
     particleSensor.setPulseAmplitudeRed(0x0A);
     // desliga o LED verde
     particleSensor.setPulseAmplitudeGreen(0);
