@@ -9,9 +9,9 @@ set xlabel "Eixo X"
 set terminal png
 set output "$ARQUIVOSAIDA"
 plot "$ARQUIVODADOS" \
-     linecolor rgb '#000000' \
+     linecolor rgb '#f000f0' \
      linetype 1 \
-     linewidth 2 \
+     linewidth 5 \
      pointtype 3 \
      pointsize 2.0 \
      title "meus dados" \
