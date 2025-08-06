@@ -46,6 +46,8 @@ def saindo():
 def update():
     global data1, curve1, ptr1, conexaoSerial, x_atual, npontos, previousTime, obterDelay, flushManual
     
+    trafegoSerial.setText("trafego=" + str(conexaoSerial.inWaiting()) + "bytes")
+
     if flushManual:
         while conexaoSerial.inWaiting() > 0:
             conexaoSerial.read()
@@ -91,10 +93,13 @@ ptr1 = 0
 previousTime = time.time()*1000 # pega a hora atual, em milissegundos
 texto = pg.TextItem(text="", color=(255,255,0), anchor=(0,1))
 textoDelay = pg.TextItem(text="delay= ", color=(200, 0, 255), anchor=(0,1))
+trafegoSerial = pg.TextItem(text="trafego= ", color=(200, 0, 255), anchor=(0,1))
 p1.addItem(texto)
 p1.addItem(textoDelay)
+p1.addItem(trafegoSerial)
 texto.setPos(0,0) # adiciona o texto na posicao (0,0) do grafico
 textoDelay.setPos(800, 4)
+trafegoSerial.setPos(400, 4)
 
 proxy1 = QtGui.QGraphicsProxyWidget()
 botao1 = QtGui.QPushButton('Inicia')
